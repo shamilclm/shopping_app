@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/view/pages/customer_page.dart';
 import 'package:shopping_app/view/pages/home_page.dart';
+import 'package:shopping_app/view/pages/product_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +16,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: Homepage());
+        home: ProductPage());
   }
 }
