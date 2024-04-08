@@ -1,17 +1,17 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shopping_app/controller/list_view_controller.dart';
 
-class GridViewWidget extends StatefulWidget {
-  const GridViewWidget({super.key});
+class GridVieWidgwt extends HookConsumerWidget {
+  const GridVieWidgwt({super.key});
 
   @override
-  State<GridViewWidget> createState() => _GridViewWidgetState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selected = useState<int>(-1);
 
-class _GridViewWidgetState extends State<GridViewWidget> {
-  int? tappedIndex;
-  @override
-  Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
@@ -26,14 +26,14 @@ class _GridViewWidgetState extends State<GridViewWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
           child: InkWell(
             onTap: () {
-              setState(() {
-                tappedIndex = index;
-              });
+              selected.value == index;
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => listPages[index]));
             },
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
-                  color: tappedIndex == index
+                  color: selected == index
                       ? const Color(0xFF17479b)
                       : Colors.white,
                   boxShadow: [
@@ -47,14 +47,14 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     Icon(
                       listModels[index].icon,
                       size: 40,
-                      color: tappedIndex == index
+                      color: selected == index
                           ? Colors.white
                           : const Color(0xFF17479b),
                     ),
                     Text(
                       listModels[index].title,
                       style: TextStyle(
-                          color: tappedIndex == index
+                          color: selected == index
                               ? Colors.white
                               : const Color(0xFF17479b),
                           fontWeight: FontWeight.bold,

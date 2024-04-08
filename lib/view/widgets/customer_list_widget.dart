@@ -1,83 +1,124 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/model/customer_model.dart';
 
 class CustomerListWidget extends StatelessWidget {
-  const CustomerListWidget({super.key});
+  final List<Customers> details;
+  const CustomerListWidget({super.key, required this.details});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       separatorBuilder: (context, index) {
         return const SizedBox(
-          height: 8,
+          height: 15,
         );
       },
-      itemCount: 8,
+      itemCount: details.length,
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemBuilder: (context, index) {
-        return Card(
-          child: Container(
-            height: 105,
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(blurRadius: 10, color: Colors.grey.withOpacity(.30))
-            ]),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Row(
-                children: [
-                  Container(
-                    width: 90,
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(image: AssetImage('')),
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+        return Container(
+          height: 120,
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.grey.withOpacity(.30))
+          ]),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                      image: const DecorationImage(
+                          image: AssetImage(
+                              'assets/images/happy-young-cute-illustration-face-profile-png.webp'),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Container(
+                  width: 1,
+                  height: 90,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                        Colors.transparent,
+                        Colors.black26,
+                        Colors.transparent
+                      ])),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      details[index].name,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    Text(
+                      'ID : ${details[index].id}',
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 111, 111, 111),
+                          fontWeight: FontWeight.w900),
+                    ),
+                    Text(
+                      '${details[index].street!},${details[index].city},${details[index].state!}',
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 111, 111, 111),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13),
+                    ),
+                    RichText(
+                      text: const TextSpan(
+                          text: 'Due Amount:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                              color: Colors.black),
+                          children: [
+                            TextSpan(
+                                text: ' \$500',
+                                style: TextStyle(color: Colors.red))
+                          ]),
+                    ),
+                  ],
+                ),
+                const Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'Nesto Hypermarket',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
+                      CircleAvatar(
+                        radius: 10,
+                        backgroundColor: Color(0xFF17479b),
+                        child: Center(
+                          child: Icon(
+                            Icons.phone,
+                            size: 10,
+                            color: Colors.white,
                           ),
-                          SizedBox(
-                            width: 80,
-                          ),
-                          CircleAvatar(
-                            radius: 10,
-                          ),
-                          CircleAvatar(
-                            radius: 10,
-                          )
-                        ],
+                        ),
                       ),
-                      Text(
-                        'ID : 102020',
-                        style: TextStyle(
-                            color: Colors.black.withOpacity(.50),
-                            fontWeight: FontWeight.bold),
+                      SizedBox(
+                        width: 5,
                       ),
-                      Text(
-                        'West palazhi,calicut,kerala',
-                        style: TextStyle(
-                            color: Colors.black.withOpacity(.50),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        'Due Amount : \$70',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 13),
-                      )
+                      // Image.asset(
+                      //   'assets/images/whatsapp_logo.png',
+                      //   height: 20,
+                      // ),
                     ],
                   ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
         );

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/model/listviewmodel.dart';
+import 'package:shopping_app/view/pages/customer_page.dart';
+import 'package:shopping_app/view/pages/demo_page.dart';
+import 'package:shopping_app/view/pages/product_page.dart';
 
 List<ListViewModel> listModels = [
   ListViewModel(title: 'Customers', icon: Icons.groups_2_sharp),
@@ -18,4 +21,15 @@ List<ListViewModel> listModels = [
   ListViewModel(
       title: "Today's Summary", icon: Icons.domain_verification_outlined),
   ListViewModel(title: 'Route', icon: Icons.repartition_sharp),
+];
+
+List listPages = [
+  const CustomerPage(),
+  const ProductPage(),
+  const DemoPage(),
+  const DemoPage(),
+  const DemoPage(),
+  const DemoPage(),
+  const DemoPage(),
+  const DemoPage(),
 ];

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/controller/services/apiservices.dart';
+import 'package:shopping_app/model/product_model.dart';
 
 import 'package:shopping_app/view/pages/customer_page.dart';
 
 class ProductGridviewWidget extends StatelessWidget {
-  const ProductGridviewWidget({super.key});
+  final List<ProductModel> model;
+  const ProductGridviewWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class ProductGridviewWidget extends StatelessWidget {
         mainAxisSpacing: 10,
         mainAxisExtent: 140,
       ),
-      itemCount: 8,
+      itemCount: model.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(
@@ -32,7 +35,7 @@ class ProductGridviewWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               child: Column(
                 children: [
-                  Center(
+                  const Center(
                       child: SizedBox(
                     height: 75,
                     width: 80,
@@ -49,10 +52,10 @@ class ProductGridviewWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'kashmir apple',
+                            model[index].name,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Text('\$200'),
+                          Text(model[index].price.toString()),
                         ],
                       ),
                       const Expanded(child: SizedBox()),

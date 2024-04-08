@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/view/widgets/show_model_widget.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final bool? isProduct;
-  const TextFieldWidget({super.key, required this.isProduct});
+
+  final TextEditingController? textEditingController;
+
+  final void Function(String)? onSubmitted;
+  const TextFieldWidget(
+      {super.key,
+      required this.isProduct,
+      required this.onSubmitted,
+      required this.textEditingController});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 45,
       child: TextField(
+        controller: textEditingController,
+        onSubmitted: onSubmitted,
         decoration: InputDecoration(
             prefixIcon: const Icon(
               Icons.search,
@@ -37,17 +48,26 @@ class TextFieldWidget extends StatelessWidget {
                           const Text('fruits'),
                         ],
                       )
-                    : const Row(
+                    : Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.qr_code_scanner_outlined),
-                          SizedBox(
+                          const Icon(Icons.qr_code_scanner_outlined),
+                          const SizedBox(
                             width: 8,
                           ),
-                          Icon(
-                            Icons.add_circle_outlined,
-                            size: 30,
-                            color: Color(0xFF17479b),
+                          InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return ShowModelWidget();
+                                  });
+                            },
+                            child: const Icon(
+                              Icons.add_circle_outlined,
+                              size: 30,
+                              color: Color(0xFF17479b),
+                            ),
                           )
                         ],
                       )),

@@ -20,7 +20,7 @@ class Homepage extends StatelessWidget {
         ),
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.sort))],
       ),
-      body: const GridViewWidget(),
+      body: const GridVieWidgwt(),
       bottomNavigationBar: const BottomNavigationWidget(),
     );
   }
